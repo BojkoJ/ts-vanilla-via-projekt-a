@@ -10,10 +10,23 @@ const citySchema = z.string().min(2, "Název města musí mít alespoň 2 znaky.
 
 const handleFormSubmit = async (event: Event) => {
 	event.preventDefault();
+
+	const submitButton = document.querySelector<HTMLButtonElement>(
+		"button[type='submit']"
+	);
 	const input = document.getElementById("city-input") as HTMLInputElement;
 	const resultDiv = document.getElementById("weather-result");
 
 	if (resultDiv) resultDiv.textContent = "";
+
+	if (submitButton) {
+		submitButton.disabled = true;
+		submitButton.classList.remove("bg-blue-500");
+		submitButton.classList.remove("cursor-pointer");
+		submitButton.classList.add("cursor-not-allowed");
+		submitButton.classList.add("bg-blue-300");
+		submitButton.textContent = "Načítám...";
+	}
 
 	try {
 		const city = citySchema.parse(input.value);
@@ -142,6 +155,16 @@ const handleFormSubmit = async (event: Event) => {
 					error instanceof Error ? error.message : "Něco se pokazilo!"
 				}</p>
 			`;
+		}
+	} finally {
+		// Znovu povolíme tlačítko
+		if (submitButton) {
+			submitButton.disabled = false;
+			submitButton.classList.remove("bg-blue-300");
+			submitButton.classList.remove("cursor-not-allowed");
+			submitButton.classList.add("bg-blue-500");
+			submitButton.classList.add("cursor-pointer");
+			submitButton.textContent = "Načíst počasí";
 		}
 	}
 };
