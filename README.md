@@ -66,7 +66,7 @@ npm install
 
     ```
     VITE_API_BASE_URL=https://api.weatherapi.com/v1/current.json
-    VITE_ASTRONOMY_API_URL = "https://api.weatherapi.com/v1/astronomy.json"
+    VITE_ASTRONOMY_API_URL="https://api.weatherapi.com/v1/astronomy.json"
     VITE_API_KEY=api_key_od_weatherAPI
     ```
 
@@ -86,8 +86,9 @@ npm install
 ## Testování
 
 -   Zadej existující město (např. "Praha") a ověř, že se zobrazí:
-    -   Teplota.
+    -   Teplota
     -   Popis počasí.
+    -   Atmosférická data.
     -   Poloha na mapě.
     -   Graf teplot za posledních 8 hodin.
 
