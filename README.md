@@ -47,7 +47,7 @@
 -   `./src/api/` - API volání (např. `weatherApi.ts` pro volání WeatherAPI).
 -   `./src/components/` - Moduly pro specifické funkce ( `chart.ts`, `map.ts`).
 -   `./src/styles/` - Soubor pro TailwindCSS
--   `./src/types/` - Typy pro TypeScript (např. `weather.ts` obsahující typy z WeatherAPI).
+-   `./src/types/` - Typy pro TypeScript (`weather.ts`,`astronomy.ts` obsahující typy z WeatherAPI).
 -   `./src/main.ts` - Hlavní soubor aplikace.
 
 ---
@@ -66,6 +66,7 @@ npm install
 
     ```
     VITE_API_BASE_URL=https://api.weatherapi.com/v1/current.json
+    VITE_ASTRONOMY_API_URL = "https://api.weatherapi.com/v1/astronomy.json"
     VITE_API_KEY=api_key_od_weatherAPI
     ```
 
