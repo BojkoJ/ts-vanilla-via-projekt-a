@@ -122,10 +122,26 @@ const handleFormSubmit = async (event: Event) => {
 			`;
 		}
 	} catch (error) {
-		console.error(error);
 		if (resultDiv) {
-			resultDiv.textContent =
-				error instanceof Error ? error.message : "Chyba!";
+			// Pro ZodError - validace vstupů
+			if (error instanceof z.ZodError) {
+				const errorMessage = error.errors
+					.map((e) => `<p class="text-red-500">${e.message}</p>`)
+					.join(""); // Sestavíme všechny chybové zprávy
+				resultDiv.innerHTML = `
+					<h2 class="text-xl font-bold text-red-500">Chyba validace</h2>
+					${errorMessage}
+				`;
+				return;
+			}
+
+			// Pro jiné chyby
+			resultDiv.innerHTML = `
+				<h2 class="text-xl font-bold text-red-500">Neočekávaná chyba</h2>
+				<p class="text-gray-700">${
+					error instanceof Error ? error.message : "Něco se pokazilo!"
+				}</p>
+			`;
 		}
 	}
 };
